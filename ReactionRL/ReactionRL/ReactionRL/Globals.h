@@ -6,8 +6,8 @@ extern bool running;
 
 enum GAMESTATE
 {
-	MAINMENU = 0,
-	GAMEPLAY = 1,
+	MAINMENU,
+	GAMEPLAY,
 	PLAYERMOVE,
 	ENEMYMOVE,
 	PLAYERACTION, 

@@ -17,6 +17,7 @@ Map::~Map()
 		delete elem;
 
 	players.clearAndDelete();
+	lights.clearAndDelete();
 }
 
 void Map::generateMap()
@@ -60,7 +61,7 @@ void Map::generateMap()
 		}
 	}
 
-	TCODImage *mapLights = new TCODImage("BG_lights2.png");
+	TCODImage * mapLights = new TCODImage("BG_lights2.png");
 	mapLights->getSize(&width, &height);
 	for (int x = 0; x < width; x++)
 	{
@@ -80,44 +81,34 @@ void Map::generateLights()
 	{
 		for (auto& tile : row)
 		{
+			// set each tile to ambientLight level
 			tile->luminosity = ambientLight;
-		}
-	}
-	for (auto& obj : players)
-	{
-		for (auto& row : map)
-		{
-			for (auto& tile : row)
+			tile->tintColor = tile->backColor;
+
+			// loop through each player and multiplicatively add their luminosity if tile is in FOV
+			for (auto& obj : players)
 			{
 				if (isInFoV(obj->x, obj->y, tile->x, tile->y))
 				{
-					float dist = distance(obj->x, obj->y, tile->x, tile->y);
-					float tempLuminosity = 1.0f - dist / obj->FoV;
-					if (tempLuminosity > 0)
-						tile->luminosity += tempLuminosity;
+					float distanceToPlayer = distance(obj->x, obj->y, tile->x, tile->y);
+					float playerLuminosityAtTile = 1.0f - distanceToPlayer / obj->FoV;
+					tile->luminosity += float(fmax(0.0f, playerLuminosityAtTile));
+				}
+			}
+
+			// loops through each light and add its luminosity and color tint
+			for (auto& light : lights)
+			{
+				if (isInFoV(light->x, light->y, tile->x, tile->y))
+				{
+					float distanceToLight = distance(light->x, light->y, tile->x, tile->y);
+					float lightLuminosityAtTile = 1.0f - distanceToLight / light->FoV;
+					tile->luminosity += float(fmax(0.0f, lightLuminosityAtTile));
+					tile->tintColor = tile->tintColor + (light->color * lightLuminosityAtTile);
 				}
 			}
 		}
 	}
-
-	for (auto& obj : lights)
-	{
-		for (auto& row : map)
-		{
-			for (auto& tile : row)
-			{
-				if (isInFoV(obj->x, obj->y, tile->x, tile->y))
-				{
-					float dist = distance(obj->x, obj->y, tile->x, tile->y);
-					float tempLuminosity = 1.0f - dist / (obj->FoV+obj->flicker);
-					if (tempLuminosity > 0)
-						tile->luminosity += tempLuminosity;
-					tile->tintColor = tile->tintColor * obj->col;
-				}
-			}
-		}
-	}
-
 }
 
 bool Map::isInFoV(int x1, int y1, int x2, int y2)
@@ -137,7 +128,7 @@ float Map::distance(int x1, int y1, int x2, int y2)
 {
 	float dx = (float)x1 - x2;
 	float dy = (float)y1 - y2;
-	return sqrt(dx*dx + dy*dy);	
+	return float(sqrt(dx*dx + dy*dy));	
 }
 
 float Map::clamp(float number, float min, float max)

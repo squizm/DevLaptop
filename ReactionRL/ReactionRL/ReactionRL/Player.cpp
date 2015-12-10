@@ -3,14 +3,10 @@
 
 Player::Player(int x, int y,char c, TCODColor color, int vis, int FoV, int ID)
 {
-	this->x = x;
-	this->y = y;
-	this->c = c;
+	setEntityInfo(x, y, c, color, ID);
 	this->FoV = FoV;
 	this->flicker = 0;
-	this->ID = ID;
-	col = color;
-	visibility = vis;
+	this->visibility = vis;
 }
 
 Player::~Player()
@@ -19,11 +15,10 @@ Player::~Player()
 
 void Player::update()
 {
-	//TCODRandom *rand = TCODRandom::getInstance();
-	//flicker = rand->getInt(0, 3);
+	//do AI things?
 }
 
 void Player::render(TCODConsole *console)
 {
-	console->setCharForeground(x, y, col);
+	console->setCharForeground(x, y, color);
 }

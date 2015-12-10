@@ -1,10 +1,18 @@
-﻿Build started 2015-12-09 4:10:16 PM.
-     1>Project "D:\Dev\DevLaptop\ReactionRL\ReactionRL\ReactionRL\ReactionRL.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2015-12-10 11:11:44 AM.
+     1>Project "C:\Users\Brian\Documents\GitHubVisualStudio\DevLaptop\ReactionRL\ReactionRL\ReactionRL\ReactionRL.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         E:\VSNET\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Map.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Button.cpp GameEngine.cpp Globals.cpp Map.cpp Player.cpp ReactionRL.cpp SceneGameplay.cpp SceneMainMenu.cpp
+         Button.cpp
+         GameEngine.cpp
+         Globals.cpp
          Map.cpp
+     1>Map.cpp(140): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+         Player.cpp
+         ReactionRL.cpp
+         SceneGameplay.cpp
+         SceneMainMenu.cpp
        Link:
-         E:\VSNET\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Dev\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.exe" /NOLOGO "libtcod-VS.lib" "libtcod-gui-VS.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Dev\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Dev\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.lib" /MACHINE:X86 /SAFESEH Release\Button.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Brian\Documents\GitHubVisualStudio\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.exe" /NOLOGO "libtcod-VS.lib" "libtcod-gui-VS.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Brian\Documents\GitHubVisualStudio\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.pdb" /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Brian\Documents\GitHubVisualStudio\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.lib" /MACHINE:X86 /SAFESEH Release\Button.obj
          Release\GameEngine.obj
          Release\Globals.obj
          Release\Map.obj
@@ -13,10 +21,11 @@
          Release\SceneGameplay.obj
          Release\SceneMainMenu.obj
          Generating code
+         All 43 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
          Finished generating code
-         ReactionRL.vcxproj -> D:\Dev\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.exe
-     1>Done Building Project "D:\Dev\DevLaptop\ReactionRL\ReactionRL\ReactionRL\ReactionRL.vcxproj" (Build target(s)).
+         ReactionRL.vcxproj -> C:\Users\Brian\Documents\GitHubVisualStudio\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.exe
+     1>Done Building Project "C:\Users\Brian\Documents\GitHubVisualStudio\DevLaptop\ReactionRL\ReactionRL\ReactionRL\ReactionRL.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.75
+Time Elapsed 00:00:04.68

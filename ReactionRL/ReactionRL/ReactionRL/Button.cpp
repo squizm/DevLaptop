@@ -3,8 +3,7 @@
 
 Button::Button(int x, int y, const char* text, void(*function)(), TCODColor backColor, TCODColor foreColor, TCODColor hoverColor)
 {
-	this->x = x;
-	this->y = y;
+	setEntityInfo(x, y, ' ', TCODColor::black, -1);
 	width = strlen(text) + 2;
 	height = 1;
 	this->text = text;

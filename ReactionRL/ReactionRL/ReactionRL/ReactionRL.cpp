@@ -1,4 +1,4 @@
-// REactionRL is an implementation of the Reaction ruleset using the Star Wars universe
+// Brian Ancliffe 2015
 
 #include "GameEngine.h"
 

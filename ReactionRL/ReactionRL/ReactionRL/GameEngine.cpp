@@ -3,7 +3,7 @@
 GameEngine::GameEngine()
 {
 	//root console config
-	TCODConsole::initRoot(80, 50, "ThoriumBREED", false, TCOD_RENDERER_SDL);
+	TCODConsole::initRoot(160, 100, "ThoriumBREED", false, TCOD_RENDERER_SDL);
 	TCODSystem::setFps(60);
 	this->console = TCODConsole::root;
 

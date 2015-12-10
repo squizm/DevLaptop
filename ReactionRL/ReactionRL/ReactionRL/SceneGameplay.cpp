@@ -77,12 +77,12 @@ void SceneGameplay::render(TCODConsole *console)
 	{
 		for (auto& tile : row)
 		{
-			conMap->putCharEx(tile->x, tile->y, tile->c, tile->foreColor, tile->backColor * tile->luminosity * tile->tintColor);
+			conMap->putCharEx(tile->x, tile->y, tile->c, tile->foreColor, tile->tintColor * tile->luminosity);
 		}
 	}
 	for (auto& obj : map->players)
 	{	
-		conMap->putCharEx(obj->x, obj->y, obj->c, obj->col, map->map[obj->x][obj->y]->backColor);
+		conMap->putCharEx(obj->x, obj->y, obj->c, obj->color, map->map[obj->x][obj->y]->backColor);
 	}
 	console->blit(conMap, 0, 0, conMap->getWidth(), conMap->getHeight(), console, 0, 0);
 	console->print(1, height -2, "Mouse: %i, %i  FPS: %i", mouse.cx, mouse.cy, TCODSystem::getFps());
