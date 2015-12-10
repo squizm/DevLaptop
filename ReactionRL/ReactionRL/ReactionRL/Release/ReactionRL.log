@@ -1,12 +1,14 @@
-﻿Build started 2015-12-10 11:11:44 AM.
-     1>Project "C:\Users\Brian\Documents\GitHubVisualStudio\DevLaptop\ReactionRL\ReactionRL\ReactionRL\ReactionRL.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2015-12-10 3:08:08 PM.
+     1>Project "C:\Users\Brian\Documents\GitHubVisualStudio\DevLaptop\ReactionRL\ReactionRL\ReactionRL\ReactionRL.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Button.cpp GameEngine.cpp Globals.cpp Map.cpp Player.cpp ReactionRL.cpp SceneGameplay.cpp SceneMainMenu.cpp
          Button.cpp
          GameEngine.cpp
          Globals.cpp
          Map.cpp
-     1>Map.cpp(140): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+     1>Map.cpp(97): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>Map.cpp(109): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>Map.cpp(111): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
          Player.cpp
          ReactionRL.cpp
          SceneGameplay.cpp
@@ -21,11 +23,11 @@
          Release\SceneGameplay.obj
          Release\SceneMainMenu.obj
          Generating code
-         All 43 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+         All 45 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
          Finished generating code
          ReactionRL.vcxproj -> C:\Users\Brian\Documents\GitHubVisualStudio\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.exe
-     1>Done Building Project "C:\Users\Brian\Documents\GitHubVisualStudio\DevLaptop\ReactionRL\ReactionRL\ReactionRL\ReactionRL.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Users\Brian\Documents\GitHubVisualStudio\DevLaptop\ReactionRL\ReactionRL\ReactionRL\ReactionRL.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.68
+Time Elapsed 00:00:01.26

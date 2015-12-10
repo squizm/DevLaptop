@@ -1,6 +1,5 @@
 #pragma once
 #include <libtcod.hpp>
-#include <math.h>
 #include "Entity.h"
 
 class Player : public Entity
