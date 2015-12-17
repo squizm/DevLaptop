@@ -9,14 +9,17 @@ class Map
 public:
 	int entityIDNum;
 	Player* player;
-	Tile* map[48][48];
+	Tile* map[120][80];
 	TCODRandom* random;
-	TCODList<Player*> players;
-	TCODList<Player*> lights;
+	TCODList<Entity*> game_objects;
+	TCODImage* mapLights;
+	int MAP_HEIGHT, MAP_WIDTH;
+
+	//TCODList<Player*> lights;
 	Map();
 	~Map();
 	void generateMap();
-	void generateLights();
+	TCODImage* generateLights();
 private:
 	float distance(int x1, int y1, int x2, int y2);
 	float clamp(float number, float min, float max);

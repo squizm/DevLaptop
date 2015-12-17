@@ -5,7 +5,8 @@
 class Player : public Entity
 {
 public:
-	int visibility, FoV, flicker;
+	int visibility, flicker;
+	Player();
 	Player(int x, int y, char c, TCODColor color, int visibility, int FoV, int ID);
 	~Player();
 	void update();
