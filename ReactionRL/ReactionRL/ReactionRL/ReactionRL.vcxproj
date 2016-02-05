@@ -39,12 +39,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Brian\Desktop\Dev\libtcod-1.5.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Brian\Desktop\Dev\libtcod-1.5.1\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\LibTCOD\libtcod-1.5.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\LibTCOD\libtcod-1.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\Brian\Desktop\Dev\libtcod-1.5.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Brian\Desktop\Dev\libtcod-1.5.1\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\LibTCOD\libtcod-1.5.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\LibTCOD\libtcod-1.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -77,7 +77,6 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ReactionRL.cpp" />
     <ClCompile Include="SceneGameplay.cpp" />
     <ClCompile Include="SceneMainMenu.cpp" />
@@ -88,7 +87,6 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="SceneGameplay.h" />
     <ClInclude Include="SceneMainMenu.h" />
     <ClInclude Include="Scene.h" />

@@ -45,7 +45,6 @@ void SceneMainMenu::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k)
 
 void SceneMainMenu::render(TCODConsole *console)
 {
-	console->setDefaultBackground(TCODColor::black);
 	for (int i = 0; i < numButtons; i++)
 	{
 		buttons[i]->render(console);

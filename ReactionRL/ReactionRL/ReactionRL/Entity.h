@@ -15,6 +15,7 @@ public:
 	char c;
 	TCODColor color;
 	Entity(): x(0), y(0), c(' '), color(TCODColor::black), type(character), FoV(0){};
+
 	void setEntityInfo(int x, int y, char c, TCODColor col, int id, int FoV, ENTITY_TYPE type)
 	{
 		this->x = x;
