@@ -3,7 +3,7 @@
 
 Button::Button(int x, int y, const char* text, void(*function)(), TCODColor backColor, TCODColor foreColor, TCODColor hoverColor)
 {
-	setEntityInfo(x, y, ' ', TCODColor::black, -1,-1, ENTITY_TYPE::character);
+	setEntityInfo(x, y, ' ', TCODColor::black, -1,-1);
 	width = strlen(text) + 2;
 	height = 1;
 	this->text = text;
@@ -14,7 +14,7 @@ Button::Button(int x, int y, const char* text, void(*function)(), TCODColor back
 	isHover = false;
 }
 
-void Button::update(TCOD_event_t event, TCOD_mouse_t mouse, TCOD_key_t key)
+void Button::update(TCOD_event_t event, TCOD_mouse_t mouse, TCOD_key_t key, uint32 deltaTime)
 {
 	switch (event){
 	case TCOD_EVENT_MOUSE_PRESS:

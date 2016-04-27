@@ -39,12 +39,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>E:\LibTCOD\libtcod-1.5.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\LibTCOD\libtcod-1.5.1\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\LibTCOD\libtcod-1.5.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\LibTCOD\libtcod-1.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>E:\LibTCOD\libtcod-1.5.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\LibTCOD\libtcod-1.5.1\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\LibTCOD\libtcod-1.5.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\LibTCOD\libtcod-1.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -74,10 +74,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="ReactionRL.cpp" />
+    <ClCompile Include="SceneCampaign.cpp" />
     <ClCompile Include="SceneGameplay.cpp" />
     <ClCompile Include="SceneMainMenu.cpp" />
   </ItemGroup>
@@ -86,11 +88,12 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="SceneCampaign.h" />
     <ClInclude Include="SceneGameplay.h" />
     <ClInclude Include="SceneMainMenu.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

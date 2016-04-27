@@ -5,8 +5,12 @@
 int main()
 {
 	GameEngine *game = new GameEngine();
+	uint32 oldTime = TCODSystem::getElapsedMilli();
+	uint32 currTime = oldTime;
 	while (running) {
-		game->update();
+		oldTime = currTime;
+		currTime = TCODSystem::getElapsedMilli();
+		game->update(currTime - oldTime);
 		game->render();
 	}
 	return 0;

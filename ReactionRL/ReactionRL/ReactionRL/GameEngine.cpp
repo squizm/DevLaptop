@@ -1,29 +1,30 @@
 #include "GameEngine.h"
+#include "SceneMainMenu.h"
+#include "SceneGameplay.h"
+#include "SceneCampaign.h"
 
 GameEngine::GameEngine()
 {
 	//root console config
-	TCODConsole::initRoot(160, 100, "ThoriumBREED", false, TCOD_RENDERER_GLSL);
+	TCODConsole::initRoot(120, 80, "ThoriumBREED", false, TCOD_RENDERER_SDL);
 	TCODSystem::setFps(60);
-	this->console = TCODConsole::root;
 
 	//Setup Scenes
-	sceneList[MAINMENU] = new SceneMainMenu(this->console->getWidth(), this->console->getHeight());
-	sceneList[GAMEPLAY] = new SceneGameplay(this->console->getWidth(), this->console->getHeight());
-	activeScene = 0;
+	sceneList[MAINMENU] = new SceneMainMenu(TCODConsole::root->getWidth(), TCODConsole::root->getHeight());
+	sceneList[CAMPAIGN] = new SceneCampaign(TCODConsole::root->getWidth(), TCODConsole::root->getHeight());
+	sceneList[TGEN] = new SceneGameplay(TCODConsole::root->getWidth(), TCODConsole::root->getHeight());
+	activeScene = MAINMENU;
 
-	state = MAINMENU;
+	TCODConsole::root->setDefaultBackground(TCODColor::black);
 }
 
 GameEngine::~GameEngine()
 {
 	for (auto& scene : sceneList)
 		delete scene;
-
-	delete console;
 }
 
-void GameEngine::update()
+void GameEngine::update(uint32 deltaTime)
 {
 	// Check for windows closed event
 	if (TCODConsole::isWindowClosed())
@@ -49,12 +50,12 @@ void GameEngine::update()
 	mouse = TCODMouse::getStatus();
 
 	//Send info key and mouse states to active scene
-	sceneList[activeScene]->update(event, mouse, key);
+	sceneList[activeScene]->update(event, mouse, key, deltaTime);
 }
 
 void GameEngine::render()
 {
-	this->console->clear();
-	sceneList[activeScene]->render(this->console);	
-	console->flush();
+	TCODConsole::root->clear();
+	sceneList[activeScene]->render(TCODConsole::root);
+	TCODConsole::root->flush();
 }

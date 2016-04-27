@@ -9,11 +9,16 @@ void btnFullscreen()
 void btnGameplay()
 {
 	for (int fade = 255; fade >= 0; fade -= 10 ) {
-		TCODConsole::setFade(fade, TCODColor::black);
-		TCODConsole::flush();
+		TCODConsole::root->setFade(fade, TCODColor::black);
+		TCODConsole::root->flush();
 	}
-	activeScene = 1;
-	TCODConsole::setFade(255, TCODColor::black);
+	activeScene = ACTIVE_SCREEN::TGEN;
+	TCODConsole::root->setFade(255, TCODColor::black);
+}
+
+void btnCampaign()
+{
+	activeScene = ACTIVE_SCREEN::CAMPAIGN;
 }
 
 void btnExit()
@@ -22,7 +27,7 @@ void btnExit()
 }
 
 
-void SceneMainMenu::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k)
+void SceneMainMenu::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 delta)
 {
 	evt = e;
 	mouse = m;
@@ -37,15 +42,15 @@ void SceneMainMenu::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k)
 			break;
 		}
 	}
-	for (int i = 0; i < numButtons; i++)
+	for (int i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++)
 	{
-		buttons[i]->update(e, m, k);
+		buttons[i]->update(e, m, k, delta);
 	}
 }
 
 void SceneMainMenu::render(TCODConsole *console)
 {
-	for (int i = 0; i < numButtons; i++)
+	for (int i = 0; i < sizeof(buttons)/sizeof(buttons[0]); i++)
 	{
 		buttons[i]->render(console);
 	}
@@ -56,15 +61,15 @@ SceneMainMenu::SceneMainMenu(int w, int h)
 {
 	width = w;
 	height = h;
-	numButtons = 3;
 	buttons[0] = new Button(1, 1, "+", btnFullscreen);
-	buttons[1] = new Button(w/2 - 5, h/2 + 3, "Gameplay", btnGameplay);
-	buttons[2] = new Button(w/2 - 3, h/2 + 11, "Exit", btnExit);
+	buttons[1] = new Button(w/2 - 2, h/2 + 3, "TGen", btnGameplay);
+	buttons[2] = new Button(w / 2 - 4, h / 2 + 7, "Campaign", btnCampaign);
+	buttons[3] = new Button(w/2 - 2, h/2 + 11, "Exit", btnExit);
 }
 
 SceneMainMenu::~SceneMainMenu()
 {
-	for (int i = 0; i < numButtons; i++)
+	for (int i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++)
 	{
 		delete buttons[i];
 	}

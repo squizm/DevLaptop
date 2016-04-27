@@ -12,10 +12,7 @@ public:
 	TCOD_event_t event;
 	TCOD_mouse_t mouse;
 	TCOD_key_t key;
-	TCODImage* testIMG;
-
-
-	void update(TCOD_event_t event, TCOD_mouse_t mouse, TCOD_key_t key);
+	
+	void update(TCOD_event_t event, TCOD_mouse_t mouse, TCOD_key_t key, uint32 delta);
 	void render(TCODConsole *console);
 };
-

@@ -12,7 +12,7 @@ public:
 	TCODColor hoverColor;
 	bool isHover;
 	Button(int x,int y, const char* text, void (*function)(), TCODColor backColor = TCODColor::darkestGrey, TCODColor foreColor = TCODColor::white, TCODColor hoverColor = TCODColor::red );
-	void update(TCOD_event_t event, TCOD_mouse_t mouse, TCOD_key_t key);
+	void update(TCOD_event_t event, TCOD_mouse_t mouse, TCOD_key_t key, uint32 deltaTime);
 	void render(TCODConsole *console);
 };
 

@@ -1,26 +1,11 @@
 #include "SceneGameplay.h"
 
-void generateSomething(TCODImage* img)
-{
-	TCODRandom* rng = TCODRandom::getInstance();
-	int x, y;
-	img->getSize(&x, &y);
-	for (int row = 0; row < x; row++)
-	{
-		for (int column = 0; column < y; column++)
-		{
-			img->putPixel(row, column, TCODColor(rng->getInt(1, 254), rng->getInt(1, 254), rng->getInt(1, 254) * row/x));
-		}
-	}
-}
-
 SceneGameplay::SceneGameplay(int w, int h)
 {
 	width = w;
 	height = h;	
-	map = new Map();
-	map->generateMap();
-	testIMG = new TCODImage(w, h);
+	map = new Map(80, 80);
+	map->generateWorldMap();
 }
 
 SceneGameplay::~SceneGameplay()
@@ -28,7 +13,7 @@ SceneGameplay::~SceneGameplay()
 	delete map;
 }
 
-void SceneGameplay::update(TCOD_event_t event, TCOD_mouse_t mouse, TCOD_key_t key)
+void SceneGameplay::update(TCOD_event_t event, TCOD_mouse_t mouse, TCOD_key_t key, uint32 delta)
 {
 	this->event = event;
 	this->mouse = mouse;
@@ -56,28 +41,17 @@ void SceneGameplay::update(TCOD_event_t event, TCOD_mouse_t mouse, TCOD_key_t ke
 	{
 		if (mouse.lbutton && mouse.cx <TCODConsole::root->getWidth() && mouse.cy < TCODConsole::root->getWidth())
 		{
-			//LMB Clicked inside window
+			// render new heightmap
+			map->generateWorldMap();
 		}
 	}
-	generateSomething(testIMG);
 }
 
 void SceneGameplay::render(TCODConsole *console)
 {
-	TCODConsole::root->setDefaultBackground(TCODColor::black);
-	TCODConsole::root->clear();
-	testIMG->blit2x(TCODConsole::root, 0, 0);
-	/*
-	for (auto& tile : map->map)
-	{
-		TCODConsole::root->putCharEx(tile->x, tile->y, tile->c, tile->foreColor, tile->backColor);
-	}
+	console->setDefaultBackground(TCODColor::black);
 
-	for (auto& obj : map->objects)
-	{
-		TCODConsole::root->putCharEx(obj->x, obj->y, obj->c, obj->color, TCODColor::red);
-	}
-	*/
+	console->blit(map->mapImage, 0, 0, 0, 0, TCODConsole::root, 1, 0);
+	
 	console->print(1, height -2, "Mouse: %i, %i  FPS: %i", mouse.cx, mouse.cy, TCODSystem::getFps());
-	console->flush();
 }
