@@ -1,1 +1,15 @@
-﻿  ReactionRL.vcxproj -> D:\Dev\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.exe
+﻿  Button.cpp
+  Character.cpp
+  GameEngine.cpp
+  Globals.cpp
+  Map.cpp
+  ReactionRL.cpp
+  SceneCampaign.cpp
+  SceneGameplay.cpp
+  SceneMainMenu.cpp
+  Generating code
+  102 of 102 functions (100.0%) were compiled, the rest were copied from previous compilation.
+    82 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  ReactionRL.vcxproj -> C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.exe

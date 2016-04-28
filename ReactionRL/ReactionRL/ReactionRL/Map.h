@@ -14,21 +14,29 @@
 class Map
 {
 public:
+	struct Tile
+	{
+		char img;
+		bool isExplored;
+		TCODColor fore;
+		TCODColor back;
+	};
 	TCODMap* map;
 	TCODHeightMap* heightMap;
 	TCODConsole* mapImage;
 	int width, height;
-
+	Tile* tileArray[72][72];
+	
 	Map(int width, int height);
 	~Map();
 	void generateWorldMap();
 	void generateLocalMap(short terrainType);
 	void computeFOV(int x, int y, int radius);
 	bool isEmpty(int x, int y);
-private:
-	float distance(int x1, int y1, int x2, int y2);
-	float clamp(float number, float min, float max);
 	bool isInLOS(int x1, int y1, int x2, int y2);
+	float distance(int x1, int y1, int x2, int y2);
+private:
+	float clamp(float number, float min, float max);
 	void smoothMap();
 	int getSurroundingWallCount(int x, int y);	
 };

@@ -18,6 +18,7 @@ private:
 	Map* map;
 	Character* player;
 	Character* characters[MAX_CHARACTERS];
+	TCODConsole* menuConsole;
 public:
 	SceneCampaign(int width, int height);
 	~SceneCampaign();

@@ -23,7 +23,11 @@ SceneCampaign::SceneCampaign(int width, int height): width(width), height(height
 	}
 	characters[0]->isPlayer = true;
 	player = characters[0];
+	player->path = new TCODPath(map->map);
 	map->map->computeFov(player->x, player->y, player->FoV);
+
+	menuConsole = new TCODConsole(48, 80);
+	menuConsole->printFrame(0, 0, 48, 80);
 }
 
 SceneCampaign::~SceneCampaign()
@@ -33,6 +37,7 @@ SceneCampaign::~SceneCampaign()
 
 void SceneCampaign::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 delta)
 {
+	#pragma region Check Input
 	evt = e;
 	mouse = m;
 	key = k;
@@ -60,35 +65,79 @@ void SceneCampaign::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 
 		default:
 			break;
 		}
+		map->computeFOV(player->x, player->y, player->FoV);
 	}
-	map->computeFOV(player->x, player->y, player->FoV);
+	else if (e == TCOD_EVENT_MOUSE_RELEASE)
+	{
+		if (mouse.rbutton_pressed && mouse.cx < map->width && mouse.cy < map->height)
+		{
+			player->destX = mouse.cx;
+			player->destY = mouse.cy;
+			player->path->compute(player->x, player->y, player->destX, player->destY);
+		}
+	}
+	else if (e == TCOD_EVENT_MOUSE_MOVE)
+	{
+		menuConsole->clear();
+		menuConsole->print(1, 1, "Mouse: %i,%i", mouse.cx, mouse.cy);
+	}
+	#pragma endregion
+
+	#pragma region Game Actions
+	if (!player->path->isEmpty())
+	{
+		if (player->x != player->destX || player->y != player->destY)
+		{
+			player->path->walk(&player->x, &player->y, false);
+			map->computeFOV(player->x, player->y, player->FoV);
+		}
+	}
+	#pragma endregion
 }
 
 void SceneCampaign::render(TCODConsole *console)
 {
+	// Draw Map w/Characters
 	for (int x = 0; x < map->width; x++)
 	{
 		for (int y = 0; y < map->height; y++)
 		{
 			if (map->map->isInFov(x, y))
-				(map->map->isWalkable(x, y)) ? console->putCharEx(x, y, '.', TCODColor::white, TCODColor::black) : console->putCharEx(x, y, '#', TCODColor::white, TCODColor::black);
+			{
+				for (Character* character : characters)
+				{
+					if(character->x == x && character->y == y)
+						console->putCharEx(x, y, character->img, map->tileArray[x][y]->fore, map->tileArray[x][y]->back);
+					else
+						console->putCharEx(x, y, map->tileArray[x][y]->img, map->tileArray[x][y]->fore, map->tileArray[x][y]->back);
+				}
+			}
 			else
-				(map->map->isWalkable(x, y)) ? console->putCharEx(x, y, '.', TCODColor::darkerGrey, TCODColor::black) : console->putCharEx(x, y, '#', TCODColor::darkerGrey, TCODColor::black);
+				console->putCharEx(x, y, map->tileArray[x][y]->img, TCODColor::white, TCODColor::black);
 		}
 	}
 
+	// Draw Debug LOS
 	for (Character* character : characters)
 	{
-		if (map->map->isInFov(character->x, character->y))
+		if (map->isInLOS(player->x, player->y, character->x, character->y))
 		{
-			if(character == player)
-				console->putCharEx(character->x, character->y, character->img, TCODColor::green, TCODColor::black);
-			else
-				console->putCharEx(character->x, character->y, character->img, TCODColor::red, TCODColor::black);
-		}
-		else
-		{
-			console->putCharEx(character->x, character->y, character->img, TCODColor::darkerGrey, TCODColor::black);
+			TCODLine::init(player->x, player->y, character->x, character->y);
+			int curX = player->x;
+			int curY = player->y;
+			do {
+				if (curX == player->x || curX == character->x)
+				{
+					if (curY == player->y || curY == character->y)
+						console->putCharEx(curX, curY, '@', map->tileArray[curX][curY]->fore, TCODColor::darkestRed);
+				}
+				else
+					console->putCharEx(curX, curY, map->tileArray[curX][curY]->img, map->tileArray[curX][curY]->fore, TCODColor::darkestRed);
+				
+			} while (!TCODLine::step(&curX, &curY));
 		}
 	}
+
+	// Draw Menu console
+	console->blit(menuConsole, 0, 0, menuConsole->getWidth(), menuConsole->getHeight(), console, 72, 0);
 }
