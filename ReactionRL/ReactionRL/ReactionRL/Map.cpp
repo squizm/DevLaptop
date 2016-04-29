@@ -20,8 +20,8 @@ Map::Map(int width, int height): width(width), height(height)
 			tileArray[x][y] = new Tile();
 			tileArray[x][y]->isExplored = false;
 			tileArray[x][y]->img = '.';
-			tileArray[x][y]->fore = TCODColor::green;
-			tileArray[x][y]->back = TCODColor::black;
+			tileArray[x][y]->fore = TCODColor::darkGreen;
+			tileArray[x][y]->back = TCODColor::darkestGreen;
 		}
 	}
 }
@@ -125,7 +125,7 @@ void Map::generateLocalMap(short terrainType)
 				tileArray[x][y]->isExplored = false;
 				tileArray[x][y]->img = '#';
 				tileArray[x][y]->fore = TCODColor::sepia;
-				tileArray[x][y]->back = TCODColor::black;
+				tileArray[x][y]->back = TCODColor::darkestSepia;
 			}
 			else
 			{
@@ -136,7 +136,7 @@ void Map::generateLocalMap(short terrainType)
 					tileArray[x][y]->isExplored = false;
 					tileArray[x][y]->img = '#';
 					tileArray[x][y]->fore = TCODColor::sepia;
-					tileArray[x][y]->back = TCODColor::black;
+					tileArray[x][y]->back = TCODColor::darkestSepia;
 				}
 				else
 				{
@@ -144,8 +144,8 @@ void Map::generateLocalMap(short terrainType)
 					tileArray[x][y] = new Tile();
 					tileArray[x][y]->isExplored = false;
 					tileArray[x][y]->img = '.';
-					tileArray[x][y]->fore = TCODColor::green;
-					tileArray[x][y]->back = TCODColor::black;
+					tileArray[x][y]->fore = TCODColor::darkGreen;
+					tileArray[x][y]->back = TCODColor::darkestGreen;
 				}
 			}
 		}
@@ -165,14 +165,14 @@ void Map::smoothMap()
 				map->setProperties(x, y, false, false);
 				tileArray[x][y]->img = '#';
 				tileArray[x][y]->fore = TCODColor::sepia;
-				tileArray[x][y]->back = TCODColor::black;
+				tileArray[x][y]->back = TCODColor::darkestSepia;
 			}
 			else if (neighbourWallTiles < 4)
 			{
 				map->setProperties(x, y, true, true);
 				tileArray[x][y]->img = '.';
-				tileArray[x][y]->fore = TCODColor::green;
-				tileArray[x][y]->back = TCODColor::black;
+				tileArray[x][y]->fore = TCODColor::darkGreen;
+				tileArray[x][y]->back = TCODColor::darkestGreen;
 			}
 		}
 	}

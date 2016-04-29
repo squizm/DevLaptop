@@ -33,7 +33,7 @@ void SceneCampaign::generateCharacters()
 			x = mapRoller();
 			y = mapRoller();
 		} while (map->isEmpty(x, y) != true);
-		characters[i] = new Character(x, y, '@', 12);
+		characters[i] = new Character(x, y, TCOD_CHAR_SMILIE, 16);
 	}
 	characters[0]->isPlayer = true;
 	player = characters[0];
@@ -79,7 +79,7 @@ void SceneCampaign::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 
 	}
 	else if (e == TCOD_EVENT_MOUSE_RELEASE)
 	{
-		if (mouse.rbutton_pressed && mouse.cx < map->width && mouse.cy < map->height)
+		if (mouse.rbutton_pressed && mouse.cx < map->width && mouse.cy < map->height && (map->map->isInFov(mouse.cx, mouse.cy) || map->tileArray[mouse.cx][mouse.cy]->isExplored))
 		{
 			player->destX = mouse.cx;
 			player->destY = mouse.cy;
@@ -108,50 +108,22 @@ void SceneCampaign::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 
 void SceneCampaign::render(TCODConsole *console)
 {
 	// Draw Map w/Characters
-	for (int x = 0; x < map->width; x++)
+	for (int y = 0; y < map->width; y++)
 	{
-		for (int y = 0; y < map->height; y++)
+		for (int x = 0; x < map->height; x++)
 		{
 			if (map->map->isInFov(x, y))
-			{
-				for (Character* character : characters)
-				{
-					if(character->x == x && character->y == y)
-						console->putCharEx(x, y, character->img, map->tileArray[x][y]->fore, map->tileArray[x][y]->back);
-					else
-						console->putCharEx(x, y, map->tileArray[x][y]->img, map->tileArray[x][y]->fore, map->tileArray[x][y]->back);
-				}
-			}
+				console->putCharEx(x, y, map->tileArray[x][y]->img, map->tileArray[x][y]->fore, map->tileArray[x][y]->back);
 			else if (map->tileArray[x][y]->isExplored)
 				console->putCharEx(x, y, map->tileArray[x][y]->img, TCODColor::white, TCODColor::black);
 		}
 	}
 
-	// Draw Debug LOS
+	// Draw Characters
 	for (Character* character : characters)
 	{
-		if (map->isInLOS(player->x, player->y, character->x, character->y))
-		{
-			/*
-			TCODLine::init(player->x, player->y, character->x, character->y);
-			int curX = player->x;
-			int curY = player->y;
-			do {
-				if (curX == player->x || curX == character->x)
-				{
-					if (curY == player->y || curY == character->y)
-						console->putCharEx(curX, curY, '@', map->tileArray[curX][curY]->fore, TCODColor::darkestRed);
-				}
-				else
-					console->putCharEx(curX, curY, map->tileArray[curX][curY]->img, map->tileArray[curX][curY]->fore, TCODColor::darkestRed);
-				
-			} while (!TCODLine::step(&curX, &curY));
-			*/
-		}
 		if (map->map->isInFov(character->x, character->y))
-		{
 			console->putCharEx(character->x, character->y, character->img, TCODColor::red, TCODColor::darkestRed);
-		}
 	}
 	console->putCharEx(player->x, player->y, player->img, TCODColor::white, TCODColor::black);
 
