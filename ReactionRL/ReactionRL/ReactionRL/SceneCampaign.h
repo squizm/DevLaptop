@@ -19,6 +19,7 @@ private:
 	Character* player;
 	Character* characters[MAX_CHARACTERS];
 	TCODConsole* menuConsole;
+	void generateCharacters();
 public:
 	SceneCampaign(int width, int height);
 	~SceneCampaign();

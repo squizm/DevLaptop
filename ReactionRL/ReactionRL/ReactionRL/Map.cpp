@@ -20,7 +20,7 @@ Map::Map(int width, int height): width(width), height(height)
 			tileArray[x][y] = new Tile();
 			tileArray[x][y]->isExplored = false;
 			tileArray[x][y]->img = '.';
-			tileArray[x][y]->fore = TCODColor::darkestGreen;
+			tileArray[x][y]->fore = TCODColor::green;
 			tileArray[x][y]->back = TCODColor::black;
 		}
 	}
@@ -96,6 +96,16 @@ float Map::clamp(float number, float min, float max)
 void Map::computeFOV(int x, int y, int radius)
 {
 	map->computeFov(x, y, radius);
+	for (int x = 0; x < width; x++)
+	{
+		for (int y = 0; y < height; y++)
+		{
+			if (map->isInFov(x, y))
+			{
+				tileArray[x][y]->isExplored = true;
+			}
+		}
+	}
 }
 
 void Map::generateLocalMap(short terrainType)
@@ -114,7 +124,7 @@ void Map::generateLocalMap(short terrainType)
 				tileArray[x][y] = new Tile();
 				tileArray[x][y]->isExplored = false;
 				tileArray[x][y]->img = '#';
-				tileArray[x][y]->fore = TCODColor::darkestSepia;
+				tileArray[x][y]->fore = TCODColor::sepia;
 				tileArray[x][y]->back = TCODColor::black;
 			}
 			else
@@ -125,7 +135,7 @@ void Map::generateLocalMap(short terrainType)
 					tileArray[x][y] = new Tile();
 					tileArray[x][y]->isExplored = false;
 					tileArray[x][y]->img = '#';
-					tileArray[x][y]->fore = TCODColor::darkestSepia;
+					tileArray[x][y]->fore = TCODColor::sepia;
 					tileArray[x][y]->back = TCODColor::black;
 				}
 				else
@@ -134,7 +144,7 @@ void Map::generateLocalMap(short terrainType)
 					tileArray[x][y] = new Tile();
 					tileArray[x][y]->isExplored = false;
 					tileArray[x][y]->img = '.';
-					tileArray[x][y]->fore = TCODColor::darkestGreen;
+					tileArray[x][y]->fore = TCODColor::green;
 					tileArray[x][y]->back = TCODColor::black;
 				}
 			}
@@ -154,14 +164,14 @@ void Map::smoothMap()
 			{
 				map->setProperties(x, y, false, false);
 				tileArray[x][y]->img = '#';
-				tileArray[x][y]->fore = TCODColor::darkestSepia;
+				tileArray[x][y]->fore = TCODColor::sepia;
 				tileArray[x][y]->back = TCODColor::black;
 			}
 			else if (neighbourWallTiles < 4)
 			{
 				map->setProperties(x, y, true, true);
 				tileArray[x][y]->img = '.';
-				tileArray[x][y]->fore = TCODColor::darkestGreen;
+				tileArray[x][y]->fore = TCODColor::green;
 				tileArray[x][y]->back = TCODColor::black;
 			}
 		}

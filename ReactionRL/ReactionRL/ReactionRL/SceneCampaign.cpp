@@ -11,6 +11,20 @@ SceneCampaign::SceneCampaign(int width, int height): width(width), height(height
 	map = new Map(MAP_WIDTH, MAP_HEIGHT);
 	map->generateLocalMap(0);
 
+	generateCharacters();
+
+	menuConsole = new TCODConsole(48, 80);
+	menuConsole->printFrame(0, 0, 48, 80);
+}
+
+SceneCampaign::~SceneCampaign()
+{
+	delete map;
+}
+
+void SceneCampaign::generateCharacters()
+{
+	memset(characters, 0, sizeof(characters));
 	for (int i = 0; i < MAX_CHARACTERS; i++)
 	{
 		int x, y = 0;
@@ -25,14 +39,6 @@ SceneCampaign::SceneCampaign(int width, int height): width(width), height(height
 	player = characters[0];
 	player->path = new TCODPath(map->map);
 	map->map->computeFov(player->x, player->y, player->FoV);
-
-	menuConsole = new TCODConsole(48, 80);
-	menuConsole->printFrame(0, 0, 48, 80);
-}
-
-SceneCampaign::~SceneCampaign()
-{
-	delete map;
 }
 
 void SceneCampaign::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 delta)
@@ -61,6 +67,10 @@ void SceneCampaign::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 
 		case TCODK_RIGHT:
 			if (map->isEmpty(player->x + 1, player->y))
 				player->x += 1;
+			break;
+		case TCODK_SPACE:
+			map->generateLocalMap(0);
+			generateCharacters();
 			break;
 		default:
 			break;
@@ -112,7 +122,7 @@ void SceneCampaign::render(TCODConsole *console)
 						console->putCharEx(x, y, map->tileArray[x][y]->img, map->tileArray[x][y]->fore, map->tileArray[x][y]->back);
 				}
 			}
-			else
+			else if (map->tileArray[x][y]->isExplored)
 				console->putCharEx(x, y, map->tileArray[x][y]->img, TCODColor::white, TCODColor::black);
 		}
 	}
@@ -122,6 +132,7 @@ void SceneCampaign::render(TCODConsole *console)
 	{
 		if (map->isInLOS(player->x, player->y, character->x, character->y))
 		{
+			/*
 			TCODLine::init(player->x, player->y, character->x, character->y);
 			int curX = player->x;
 			int curY = player->y;
@@ -135,8 +146,14 @@ void SceneCampaign::render(TCODConsole *console)
 					console->putCharEx(curX, curY, map->tileArray[curX][curY]->img, map->tileArray[curX][curY]->fore, TCODColor::darkestRed);
 				
 			} while (!TCODLine::step(&curX, &curY));
+			*/
+		}
+		if (map->map->isInFov(character->x, character->y))
+		{
+			console->putCharEx(character->x, character->y, character->img, TCODColor::red, TCODColor::darkestRed);
 		}
 	}
+	console->putCharEx(player->x, player->y, player->img, TCODColor::white, TCODColor::black);
 
 	// Draw Menu console
 	console->blit(menuConsole, 0, 0, menuConsole->getWidth(), menuConsole->getHeight(), console, 72, 0);
