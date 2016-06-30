@@ -2,6 +2,8 @@
 #include "Scene.h"
 #include "Character.h"
 #include "Map.h"
+#include "Popup.h"
+#include <vector>
 
 #define MAP_WIDTH	72
 #define MAP_HEIGHT	72
@@ -19,6 +21,8 @@ private:
 	Character* player;
 	Character* characters[MAX_CHARACTERS];
 	TCODConsole* menuConsole;
+	Popup* popup;
+	std::vector<char*> log;
 	void generateCharacters();
 public:
 	SceneCampaign(int width, int height);

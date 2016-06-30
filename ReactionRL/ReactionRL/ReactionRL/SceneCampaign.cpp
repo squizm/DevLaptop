@@ -15,15 +15,21 @@ SceneCampaign::SceneCampaign(int width, int height): width(width), height(height
 
 	menuConsole = new TCODConsole(48, 80);
 	menuConsole->printFrame(0, 0, 48, 80);
+
+	popup = new Popup(POPUP_NOTIFICATION, "Pop up!", 5, 5, "this is a test. this is a test.");
+
+	log.clear();
 }
 
 SceneCampaign::~SceneCampaign()
 {
 	delete map;
+	delete popup;
 }
 
 void SceneCampaign::generateCharacters()
 {
+	log.push_back("Generating Characters");
 	memset(characters, 0, sizeof(characters));
 	for (int i = 0; i < MAX_CHARACTERS; i++)
 	{
@@ -84,6 +90,7 @@ void SceneCampaign::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 
 			player->destX = mouse.cx;
 			player->destY = mouse.cy;
 			player->path->compute(player->x, player->y, player->destX, player->destY);
+			log.push_back("test");
 		}
 	}
 	else if (e == TCOD_EVENT_MOUSE_MOVE)
@@ -103,11 +110,14 @@ void SceneCampaign::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 
 		}
 	}
 	#pragma endregion
+
+	popup->update(e, m, k, delta);
+	menuConsole->print(1, 78, "%i fps", TCODSystem::getFps());
 }
 
 void SceneCampaign::render(TCODConsole *console)
 {
-	// Draw Map w/Characters
+	// Draw Map
 	for (int y = 0; y < map->width; y++)
 	{
 		for (int x = 0; x < map->height; x++)
@@ -129,4 +139,23 @@ void SceneCampaign::render(TCODConsole *console)
 
 	// Draw Menu console
 	console->blit(menuConsole, 0, 0, menuConsole->getWidth(), menuConsole->getHeight(), console, 72, 0);
+
+	// Draw popup console
+	if (popup->isShown)
+	{
+		popup->render();
+		console->blit(popup->console, 0, 0, popup->width, popup->height, console, 10, 10, 1.0f, 0.75f);
+	}
+	
+	float colourCoef = 1.0f;
+	for (int i = 0; i < 5; i++)
+	{
+		if (log.size() > i)
+		{
+			TCODConsole::root->setDefaultForeground(TCODColor::white * colourCoef);
+			console->printEx(1, 74 + i, TCOD_BKGND_DEFAULT, TCOD_alignment_t::TCOD_LEFT, log.at(i));
+			colourCoef -= 0.2f;
+		}
+	}
+	TCODConsole::root->setDefaultForeground(TCODColor::white);
 }

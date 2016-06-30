@@ -135,7 +135,7 @@ void Map::generateLocalMap(short terrainType)
 					tileArray[x][y] = new Tile();
 					tileArray[x][y]->isExplored = false;
 					tileArray[x][y]->img = '#';
-					tileArray[x][y]->fore = TCODColor::sepia;
+					tileArray[x][y]->fore = TCODColor::white;
 					tileArray[x][y]->back = TCODColor::darkestSepia;
 				}
 				else
@@ -164,7 +164,7 @@ void Map::smoothMap()
 			{
 				map->setProperties(x, y, false, false);
 				tileArray[x][y]->img = '#';
-				tileArray[x][y]->fore = TCODColor::sepia;
+				tileArray[x][y]->fore = TCODColor::white;
 				tileArray[x][y]->back = TCODColor::darkestSepia;
 			}
 			else if (neighbourWallTiles < 4)

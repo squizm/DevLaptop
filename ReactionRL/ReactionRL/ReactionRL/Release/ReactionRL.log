@@ -1,7 +1,10 @@
-﻿  SceneCampaign.cpp
+﻿  GameEngine.cpp
+  Popup.cpp
+  SceneCampaign.cpp
+SceneCampaign.cpp(150): warning C4018: '>': signed/unsigned mismatch
   Generating code
-  1 of 102 functions ( 1.0%) were compiled, the rest were copied from previous compilation.
+  8 of 182 functions ( 4.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   ReactionRL.vcxproj -> C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.exe

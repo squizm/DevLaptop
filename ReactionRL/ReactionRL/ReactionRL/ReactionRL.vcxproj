@@ -64,12 +64,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>libtcod-VS.lib;libtcod-gui-VS.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -78,6 +80,7 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Popup.cpp" />
     <ClCompile Include="ReactionRL.cpp" />
     <ClCompile Include="SceneCampaign.cpp" />
     <ClCompile Include="SceneGameplay.cpp" />
@@ -90,6 +93,7 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Popup.h" />
     <ClInclude Include="SceneCampaign.h" />
     <ClInclude Include="SceneGameplay.h" />
     <ClInclude Include="SceneMainMenu.h" />

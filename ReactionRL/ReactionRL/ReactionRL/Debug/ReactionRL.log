@@ -1,2 +1,3 @@
 ﻿  SceneCampaign.cpp
+c:\users\ll66241\source\repos\devlaptop\reactionrl\reactionrl\reactionrl\scenecampaign.cpp(148): warning C4018: '>': signed/unsigned mismatch
   ReactionRL.vcxproj -> C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Debug\ReactionRL.exe
