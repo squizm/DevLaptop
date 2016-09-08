@@ -1,6 +1,7 @@
 #include "SceneCampaign.h"
 #include <random>
 #include <functional>
+#include <sstream>
 
 std::default_random_engine generator;
 std::uniform_int_distribution<int> distribution(0, MAP_WIDTH - 1);
@@ -16,7 +17,8 @@ SceneCampaign::SceneCampaign(int width, int height): width(width), height(height
 	menuConsole = new TCODConsole(48, 80);
 	menuConsole->printFrame(0, 0, 48, 80);
 
-	popup = new Popup(POPUP_NOTIFICATION, "Pop up!", 5, 5, "this is a test. this is a test.");
+	popup = new Popup(POPUP_NOTIFICATION, "Pop up!", width/2, height/2, "this is a test. this is a test.");
+	popup->isShown = false;
 
 	log.clear();
 }
@@ -75,10 +77,18 @@ void SceneCampaign::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 
 				player->x += 1;
 			break;
 		case TCODK_SPACE:
+			log.push_back("Generating new map");
 			map->generateLocalMap(0);
 			generateCharacters();
 			break;
 		default:
+			break;
+		}
+
+		switch (key.c)
+		{
+		case 'p':
+			popup->isShown = !popup->isShown;
 			break;
 		}
 		map->computeFOV(player->x, player->y, player->FoV);
@@ -90,7 +100,7 @@ void SceneCampaign::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 
 			player->destX = mouse.cx;
 			player->destY = mouse.cy;
 			player->path->compute(player->x, player->y, player->destX, player->destY);
-			log.push_back("test");
+			log.push_back("Player moving");
 		}
 	}
 	else if (e == TCOD_EVENT_MOUSE_MOVE)
@@ -147,6 +157,7 @@ void SceneCampaign::render(TCODConsole *console)
 		console->blit(popup->console, 0, 0, popup->width, popup->height, console, 10, 10, 1.0f, 0.75f);
 	}
 	
+	// Draw message log
 	float colourCoef = 1.0f;
 	for (int i = 0; i < 5; i++)
 	{

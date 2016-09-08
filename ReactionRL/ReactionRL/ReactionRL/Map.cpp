@@ -2,7 +2,7 @@
 #include <random>
 #include <functional>
 
-std::default_random_engine gen;
+std::default_random_engine gen (TCODSystem::getElapsedMilli());
 std::uniform_int_distribution<int> dist(0, 99);
 auto d100 = std::bind(gen, dist);
 

@@ -14,7 +14,10 @@ Character::~Character()
 
 void Character::update(TCOD_event_t event, TCOD_mouse_t mouse, TCOD_key_t key, uint32 deltaTime)
 {
-
+	if (!isPlayer)
+	{
+		//do some AI stuff
+	}
 }
 
 void Character::render(TCODConsole *console)
