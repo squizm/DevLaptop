@@ -1,9 +1,8 @@
-﻿  SceneCampaign.cpp
-SceneCampaign.cpp(164): warning C4018: '>': signed/unsigned mismatch
+﻿  Popup.cpp
   Generating code
-  7 of 178 functions ( 3.9%) were compiled, the rest were copied from previous compilation.
+  4 of 178 functions ( 2.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    15 functions had inline decision re-evaluated but remain unchanged
+    3 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   ReactionRL.vcxproj -> C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.exe
   ReactionRL.vcxproj -> C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.pdb (Full PDB)

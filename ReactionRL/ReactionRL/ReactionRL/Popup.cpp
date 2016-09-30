@@ -30,11 +30,11 @@ Popup::Popup(short type, char* title, int locX, int locY,char* message) :
 	switch (type)
 	{
 	case POPUP_YESNO:
-		button1 = new Button(1,height - 1, "YES", btnYES);
-		button2 = new Button(width/2 + 1, height - 1, "NO", btnNO);
+		button1 = new Button(1,height - 4, "YES", btnYES);
+		button2 = new Button(width/2 + 1, height - 4, "NO", btnNO);
 		break;
 	case POPUP_NOTIFICATION:
-		button1 = new Button(1, height - 1, "OK", btnOK);
+		button1 = new Button(1, height - 4, "OK", btnOK);
 		button2 = 0;
 		break;
 	}
