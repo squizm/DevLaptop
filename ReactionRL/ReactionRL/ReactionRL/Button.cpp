@@ -4,25 +4,25 @@
 Button::Button(int x, int y, const char* text, void(*function)(), TCODColor backColor, TCODColor foreColor, TCODColor hoverColor)
 {
 	setEntityInfo(x, y, ' ', TCODColor::black, -1,-1);
-	width = strlen(text) + 2;
-	height = 1;
+	this->width = strlen(text) + 2;
+	this->height = 1;
 	this->text = text;
-	onClick = function;
+	this->onClick = function;
 	this->backColor = backColor;
 	this->foreColor = foreColor;
 	this->hoverColor = hoverColor;
-	isHover = false;
+	this->isHover = false;
 }
 
-void Button::update(TCOD_event_t event, TCOD_mouse_t mouse, TCOD_key_t key, uint32 deltaTime)
+void Button::update(TCOD_event_t event, int mouseX, int mouseY, TCOD_key_t key, uint32 deltaTime)
 {
 	switch (event){
 	case TCOD_EVENT_MOUSE_PRESS:
-		if (mouse.cx >= x && mouse.cy >= y && mouse.cx <= x + width +1 && mouse.cy <= y + height +1)
+		if (mouseX >= x && mouseY >= y && mouseX <= x + width +1 && mouseY <= y + height +1)
 			onClick();
 		break;
 	case TCOD_EVENT_MOUSE_MOVE:
-		if (mouse.cx >= x && mouse.cy >= y && mouse.cx <= x + width +1 && mouse.cy <= y + height +1)
+		if (mouseX >= x && mouseY >= y && mouseX <= x + width +1 && mouseY <= y + height +1)
 			isHover = true;
 		else
 			isHover = false;

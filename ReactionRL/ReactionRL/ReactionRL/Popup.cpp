@@ -55,9 +55,9 @@ void Popup::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 delta)
 	if (isShown)
 	{
 		if (button1)
-			button1->update(e, m, k, delta);
+			button1->update(e, m.cx - locX, m.cy - locY, k, delta);
 		if (button2)
-			button2->update(e, m, k, delta);
+			button2->update(e, m.cx - locX, m.cy - locY, k, delta);
 	}
 }
 

@@ -1,8 +1,18 @@
-﻿  Popup.cpp
+﻿  SceneCampaign.cpp
+SceneCampaign.cpp(164): warning C4018: '>': signed/unsigned mismatch
   Generating code
-  4 of 178 functions ( 2.2%) were compiled, the rest were copied from previous compilation.
+  6 of 178 functions ( 3.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
+Button.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Button.obj' or at 'C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\vc140.pdb'; linking object as if no debug info
+Character.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Character.obj' or at 'C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\vc140.pdb'; linking object as if no debug info
+GameEngine.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'GameEngine.obj' or at 'C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\vc140.pdb'; linking object as if no debug info
+Globals.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Globals.obj' or at 'C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\vc140.pdb'; linking object as if no debug info
+Map.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Map.obj' or at 'C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\vc140.pdb'; linking object as if no debug info
+Popup.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'Popup.obj' or at 'C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\vc140.pdb'; linking object as if no debug info
+ReactionRL.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'ReactionRL.obj' or at 'C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\vc140.pdb'; linking object as if no debug info
+SceneGameplay.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'SceneGameplay.obj' or at 'C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\vc140.pdb'; linking object as if no debug info
+SceneMainMenu.obj : warning LNK4099: PDB 'vc140.pdb' was not found with 'SceneMainMenu.obj' or at 'C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\vc140.pdb'; linking object as if no debug info
   ReactionRL.vcxproj -> C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.exe
   ReactionRL.vcxproj -> C:\Users\ll66241\Source\Repos\DevLaptop\ReactionRL\ReactionRL\Release\ReactionRL.pdb (Full PDB)

@@ -17,7 +17,7 @@ SceneCampaign::SceneCampaign(int width, int height): width(width), height(height
 	menuConsole = new TCODConsole(48, 80);
 	menuConsole->printFrame(0, 0, 48, 80);
 
-	popup = new Popup(POPUP_NOTIFICATION, "Pop up!", width/2, height/2, "this is a test. this is a test.");
+	popup = new Popup(POPUP_NOTIFICATION, "Pop up!", (width/2) - (MAX_WIDTH/2), height/2, "this is a test. this is a test.");
 	popup->isShown = false;
 
 	log.clear();
@@ -154,7 +154,7 @@ void SceneCampaign::render(TCODConsole *console)
 	if (popup->isShown)
 	{
 		popup->render();
-		console->blit(popup->console, 0, 0, popup->width, popup->height, console, 10, 10, 1.0f, 0.75f);
+		console->blit(popup->console, 0, 0, popup->width, popup->height, console, popup->locX, popup->locY, 1.0f, 0.75f);
 	}
 	
 	// Draw message log

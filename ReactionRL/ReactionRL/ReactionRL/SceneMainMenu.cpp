@@ -44,7 +44,7 @@ void SceneMainMenu::update(TCOD_event_t e, TCOD_mouse_t m, TCOD_key_t k, uint32 
 	}
 	for (int i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++)
 	{
-		buttons[i]->update(e, m, k, delta);
+		buttons[i]->update(e, m.cx, m.cy, k, delta);
 	}
 }
 
